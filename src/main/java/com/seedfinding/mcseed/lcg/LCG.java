@@ -1,4 +1,4 @@
-package kaptainwutax.seedutils.lcg;
+package com.seedfinding.mcseed.lcg;
 
 import kaptainwutax.mathutils.util.Mth;
 

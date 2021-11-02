@@ -1,6 +1,6 @@
-package kaptainwutax.seedutils.rand;
+package com.seedfinding.mcseed.rand;
 
-import kaptainwutax.seedutils.lcg.LCG;
+import com.seedfinding.mcseed.lcg.LCG;
 
 import java.util.List;
 import java.util.ListIterator;

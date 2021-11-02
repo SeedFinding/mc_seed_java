@@ -1,4 +1,4 @@
-package kaptainwutax.seedutils.rand;
+package com.seedfinding.mcseed.rand;
 
 import java.util.concurrent.atomic.AtomicLong;
 

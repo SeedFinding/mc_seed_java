@@ -1,6 +1,6 @@
-package kaptainwutax.seedutils.rand;
+package com.seedfinding.mcseed.rand;
 
-import kaptainwutax.seedutils.lcg.LCG;
+import com.seedfinding.mcseed.lcg.LCG;
 
 public class CombinedJRand extends JRand {
 

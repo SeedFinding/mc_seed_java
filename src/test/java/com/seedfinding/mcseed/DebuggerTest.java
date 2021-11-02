@@ -1,6 +1,6 @@
-package kaptainwutax.seedutils;
+package com.seedfinding.mcseed;
 
-import kaptainwutax.seedutils.rand.JRand;
+import com.seedfinding.mcseed.rand.JRand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

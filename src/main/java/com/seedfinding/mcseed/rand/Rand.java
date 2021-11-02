@@ -1,7 +1,7 @@
-package kaptainwutax.seedutils.rand;
+package com.seedfinding.mcseed.rand;
 
 import kaptainwutax.mathutils.util.Mth;
-import kaptainwutax.seedutils.lcg.LCG;
+import com.seedfinding.mcseed.lcg.LCG;
 
 public class Rand {
 
