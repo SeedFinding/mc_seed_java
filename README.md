@@ -1,4 +1,4 @@
-# SeedUtils
+# Minecraft Seed
 
 A utility library for LCGs and Minecraft Seeding.
 
