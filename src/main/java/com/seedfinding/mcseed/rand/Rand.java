@@ -1,6 +1,6 @@
 package com.seedfinding.mcseed.rand;
 
-import kaptainwutax.mathutils.util.Mth;
+import com.seedfinding.mcmath.util.Mth;
 import com.seedfinding.mcseed.lcg.LCG;
 
 public class Rand {
@@ -36,7 +36,7 @@ public class Rand {
 	public long nextBits(int bits) {
 		this.seed = this.nextSeed();
 
-		if (this.lcg.isModPowerOf2()) {
+		if(this.lcg.isModPowerOf2()) {
 			return this.seed >>> (this.lcg.getModTrailingZeroes() - bits);
 		}
 
@@ -53,20 +53,20 @@ public class Rand {
 
 	@Override
 	public boolean equals(Object o) {
-		if(this == o)return true;
-		if(!(o instanceof Rand))return false;
+		if(this == o) return true;
+		if(!(o instanceof Rand)) return false;
 		Rand rand = (Rand)o;
 		return this.getSeed() == rand.getSeed() && this.lcg.equals(rand.lcg);
 	}
 
 	@Override
 	public int hashCode() {
-		return (int) (this.lcg.hashCode() + this.seed);
+		return (int)(this.lcg.hashCode() + this.seed);
 	}
 
 	@Override
 	public String toString() {
-		return "Rand{" + "lcg=" +  this.lcg + ", seed=" + this.seed + '}';
+		return "Rand{" + "lcg=" + this.lcg + ", seed=" + this.seed + '}';
 	}
 }
 

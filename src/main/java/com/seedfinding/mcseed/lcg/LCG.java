@@ -1,6 +1,6 @@
 package com.seedfinding.mcseed.lcg;
 
-import kaptainwutax.mathutils.util.Mth;
+import com.seedfinding.mcmath.util.Mth;
 
 import java.util.Objects;
 
@@ -79,9 +79,9 @@ public class LCG {
 	}
 
 	public long mod(long n) {
-		if (this.isModPowerOf2()) {
+		if(this.isModPowerOf2()) {
 			return n & (this.modulus - 1);
-		} else if (n <= 1L << 32) {
+		} else if(n <= 1L << 32) {
 			return Long.remainderUnsigned(n, this.modulus);
 		}
 
@@ -95,8 +95,8 @@ public class LCG {
 		long intermediateMultiplier = this.multiplier;
 		long intermediateAddend = this.addend;
 
-		for (long k = steps; k != 0; k >>>= 1) {
-			if ((k & 1) != 0) {
+		for(long k = steps; k != 0; k >>>= 1) {
+			if((k & 1) != 0) {
 				multiplier *= intermediateMultiplier;
 				addend = intermediateMultiplier * addend + intermediateAddend;
 			}
@@ -135,9 +135,9 @@ public class LCG {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj == this)return true;
-		if(!(obj instanceof LCG))return false;
-		LCG lcg = (LCG) obj;
+		if(obj == this) return true;
+		if(!(obj instanceof LCG)) return false;
+		LCG lcg = (LCG)obj;
 		return this.multiplier == lcg.multiplier && this.addend == lcg.addend && this.modulus == lcg.modulus;
 	}
 
@@ -149,13 +149,13 @@ public class LCG {
 	@Override
 	public String toString() {
 		return "LCG{" + "multiplier=" + this.multiplier +
-				", addend=" + this.addend + ", modulo=" + this.modulus + '}';
+			", addend=" + this.addend + ", modulo=" + this.modulus + '}';
 	}
 
 	public String toPrettyString() {
 		return "Multiplier: " + String.format("0x%X (%d)", this.multiplier, this.multiplier) +
-				", Addend: " + String.format("0x%X (%d)", this.addend, this.addend) +
-				", Modulo: " + String.format("0x%X (%d)", this.modulus, this.modulus);
+			", Addend: " + String.format("0x%X (%d)", this.addend, this.addend) +
+			", Modulo: " + String.format("0x%X (%d)", this.modulus, this.modulus);
 	}
 
 }

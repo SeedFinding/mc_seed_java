@@ -32,7 +32,7 @@ public class Xoroshiro128PlusPlus implements IRand {
 
 	public Xoroshiro128PlusPlus(long loSeed, long hiSeed) {
 		this.seed = new Seed128(loSeed, hiSeed);
-		if ((loSeed | hiSeed) == 0L) {
+		if((loSeed | hiSeed) == 0L) {
 			//  the fractional parts of square roots of squarefree numbers *2^64.
 			this.seed = new Seed128(-7046029254386353131L, 7640891576956012809L);
 		}
@@ -43,15 +43,15 @@ public class Xoroshiro128PlusPlus implements IRand {
 	}
 
 	public int nextInt() {
-		return (int) this.nextLong();
+		return (int)this.nextLong();
 	}
 
 
 	public int nextInt(int n) {
-		if (n <= 0) {
+		if(n <= 0) {
 			throw new IllegalArgumentException("Bound must be positive");
 		}
-		return Math.abs((int) (this.nextLong() % (long) n));
+		return Math.abs((int)(this.nextLong() % (long)n));
 	}
 
 
@@ -61,23 +61,23 @@ public class Xoroshiro128PlusPlus implements IRand {
 
 
 	public float nextFloat() {
-		return (float) this.nextBits(24) * 5.9604645E-8f;
+		return (float)this.nextBits(24) * 5.9604645E-8f;
 	}
 
 
 	public double nextDouble() {
-		return (double) this.nextBits(53) * 1.1102230246251565E-16;
+		return (double)this.nextBits(53) * 1.1102230246251565E-16;
 	}
 
 
 	public void consumeCount(int n) {
-		for (int i = 0; i < n; ++i) {
+		for(int i = 0; i < n; ++i) {
 			this.nextLong();
 		}
 	}
 
 	public double nextGaussian() {
-		if (this.haveNextNextGaussian) {
+		if(this.haveNextNextGaussian) {
 			this.haveNextNextGaussian = false;
 			return this.nextNextGaussian;
 		} else {
@@ -88,7 +88,7 @@ public class Xoroshiro128PlusPlus implements IRand {
 				v1 = 2.0 * this.nextDouble() - 1.0; // between -1 and 1
 				v2 = 2.0 * this.nextDouble() - 1.0; // between -1 and 1
 				s = v1 * v1 + v2 * v2;
-			} while (s >= 1.0 || s == 0.0);
+			} while(s >= 1.0 || s == 0.0);
 			double multiplier = StrictMath.sqrt(-2.0 * StrictMath.log(s) / s);
 			this.nextNextGaussian = v2 * multiplier;
 			this.haveNextNextGaussian = true;
@@ -122,9 +122,9 @@ public class Xoroshiro128PlusPlus implements IRand {
 		@Override
 		public String toString() {
 			return "Seed128{" +
-					"hiSeed=" + hiSeed +
-					", loSeed=" + loSeed +
-					'}';
+				"hiSeed=" + hiSeed +
+				", loSeed=" + loSeed +
+				'}';
 		}
 	}
 }

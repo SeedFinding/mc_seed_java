@@ -1,13 +1,13 @@
 package com.seedfinding.mcseed.lcg;
 
-import kaptainwutax.mathutils.util.Mth;
+import com.seedfinding.mcmath.util.Mth;
 
 import java.math.BigInteger;
 
 public class DiscreteLog {
 
 	public static boolean supports(LCG lcg) {
-		if(!lcg.isModPowerOf2() || lcg.getModTrailingZeroes() > 61)return false;
+		if(!lcg.isModPowerOf2() || lcg.getModTrailingZeroes() > 61) return false;
 		return lcg.multiplier % 2 != 0 && lcg.addend % 2 != 0;
 	}
 
