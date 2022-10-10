@@ -2,6 +2,8 @@ package com.seedfinding.mcseed.rand;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import static com.seedfinding.mcmath.util.Mth.MASK_32;
+
 @SuppressWarnings("unused")
 public class Xoroshiro128PlusPlus implements IRand {
 	public Seed128 seed;
@@ -42,16 +44,43 @@ public class Xoroshiro128PlusPlus implements IRand {
 		this.seed = upgradeSeedTo128bit(seed);
 	}
 
+	/**
+	 * Return the nextInt from the nextLong implementation, however this is cursed as it can return negatives
+	 * (which are in no way the intended use for that prng), so you shouldn't use it directly (or only to do skips)
+	 *
+	 * @return a pseudo random integer
+	 */
 	public int nextInt() {
 		return (int)this.nextLong();
 	}
 
-
+	/**
+	 * Calculate a pseudo random positive integer such as it is below the bound n
+	 *
+	 * @param n the bound
+	 * @return a positive number between 0 and n-1
+	 */
 	public int nextInt(int n) {
 		if(n <= 0) {
 			throw new IllegalArgumentException("Bound must be positive");
 		}
-		return Math.abs((int)(this.nextLong() % (long)n));
+		// this is equivalent to the line below because masking is unsigned
+		// long r = (long)((int)this.nextLong()) & MASK_32;
+		long r = this.nextLong() & MASK_32;
+		r *= n;
+		long lowerBits = r & MASK_32;
+		// now r can be above 2^32, but sadly if its lower bytes are below
+		if(lowerBits < (long)n) {
+			int bound = Integer.remainderUnsigned(~n + 1, n);
+			while(lowerBits < bound) {
+				// this is equivalent to the line below because masking is unsigned
+				// lowerBits=(long)((int)this.nextLong()) & MASK_32;
+				r = this.nextLong() & MASK_32;
+				r *= n;
+				lowerBits = r & MASK_32;
+			}
+		}
+		return (int)(r >> 32);
 	}
 
 
